@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc">
+	<Dialog title="Add Attachment (Video not supported)" class="sapUiContentPadding">
+		<content>
+			<u:FileUploader
+				id="fileUploader"
+				name="myFileUpload"
+				uploadOnChange="false"
+				uploadStart="closeFileDialog"
+				change="onAttachmentsUploaderChange" />
+		</content>
+		<endButton>
+			<Button text="Cancel" press="closeFileDialog" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

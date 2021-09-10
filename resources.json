@@ -1,0 +1,305 @@
+{
+    "resources": [
+        {
+            "name": "img/sdge/SDGE_Logo-57x57.png"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/IDBUtils.js"
+        },
+        {
+            "name": "controller/Worklist.controller.js"
+        },
+        {
+            "name": "controller/StopTheJob.controller.js"
+        },
+        {
+            "name": "controller/SafetySuggestions.controller.js"
+        },
+        {
+            "name": "controller/NearMiss.controller.js"
+        },
+        {
+            "name": "controller/Launchpad.controller.js"
+        },
+        {
+            "name": "controller/IncidentBaseController.js"
+        },
+        {
+            "name": "controller/HazardIdentification.controller.js"
+        },
+        {
+            "name": "controller/Formatter.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "serviceworker.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "controller/SafetySuggestions-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "model/models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "model/IDBUtils-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/Worklist-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/StopTheJob-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/NearMiss-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/Launchpad-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/IncidentBaseController-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/HazardIdentification-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/Formatter-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/BaseController-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/App-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "serviceworker-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "img/sdge/firefox-general-90-90.png"
+        },
+        {
+            "name": "img/sdge/firefox-general-64-64.png"
+        },
+        {
+            "name": "img/sdge/firefox-general-32-32.png"
+        },
+        {
+            "name": "img/sdge/firefox-general-256-256.png"
+        },
+        {
+            "name": "img/sdge/chrome-installprocess-128-128.png"
+        },
+        {
+            "name": "img/sdge/chrome-favicon-16-16.png"
+        },
+        {
+            "name": "img/sdge/android-launchericon-96-96.png"
+        },
+        {
+            "name": "img/sdge/android-launchericon-72-72.png"
+        },
+        {
+            "name": "img/sdge/android-launchericon-512-512.png"
+        },
+        {
+            "name": "img/sdge/android-launchericon-48-48.png"
+        },
+        {
+            "name": "img/sdge/android-launchericon-192-192.png"
+        },
+        {
+            "name": "img/sdge/android-launchericon-144-144.png"
+        },
+        {
+            "name": "img/sdge/SDGE_Logo-76x76.png"
+        },
+        {
+            "name": "img/sdge/SDGE_Logo-72x72.png"
+        },
+        {
+            "name": "img/sdge/SDGE_Logo-60x60.png"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "img/sdge/SDGE_Logo-152x152.png"
+        },
+        {
+            "name": "img/sdge/SDGE_Logo-120x120.png"
+        },
+        {
+            "name": "img/scg/firefox-general-90-90.png"
+        },
+        {
+            "name": "img/scg/firefox-general-64-64.png"
+        },
+        {
+            "name": "img/scg/firefox-general-32-32.png"
+        },
+        {
+            "name": "img/scg/firefox-general-256-256.png"
+        },
+        {
+            "name": "img/scg/chrome-installprocess-128-128.png"
+        },
+        {
+            "name": "img/scg/chrome-favicon-16-16.png"
+        },
+        {
+            "name": "img/scg/android-launchericon-96-96.png"
+        },
+        {
+            "name": "img/scg/android-launchericon-72-72.png"
+        },
+        {
+            "name": "img/scg/android-launchericon-512-512.png"
+        },
+        {
+            "name": "img/scg/android-launchericon-48-48.png"
+        },
+        {
+            "name": "img/scg/android-launchericon-192-192.png"
+        },
+        {
+            "name": "img/scg/android-launchericon-144-144.png"
+        },
+        {
+            "name": "img/scg/SCG_logo-76x76.png"
+        },
+        {
+            "name": "img/scg/SCG_logo-72x72.png"
+        },
+        {
+            "name": "img/scg/SCG_logo-60x60.png"
+        },
+        {
+            "name": "img/scg/SCG_logo-57x57.png"
+        },
+        {
+            "name": "img/scg/SCG_logo-152x152.png"
+        },
+        {
+            "name": "img/scg/SCG_logo-120x120.png"
+        },
+        {
+            "name": "css/fonts/sap-launch-icons.ttf"
+        },
+        {
+            "name": "css/fonts/sap-launch-icons.eot"
+        },
+        {
+            "name": "view/Worklist.view.xml"
+        },
+        {
+            "name": "view/StopTheJob.view.xml"
+        },
+        {
+            "name": "view/SafetySuggestions.view.xml"
+        },
+        {
+            "name": "view/NearMiss.view.xml"
+        },
+        {
+            "name": "view/Launchpad.view.xml"
+        },
+        {
+            "name": "view/HazardIdentification.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "img/export.png"
+        },
+        {
+            "name": "fragment/WhereItHappened.fragment.xml"
+        },
+        {
+            "name": "fragment/WhenItHappened.fragment.xml"
+        },
+        {
+            "name": "fragment/WhatHappened.fragment.xml"
+        },
+        {
+            "name": "fragment/StopTheJobSpecific.fragment.xml"
+        },
+        {
+            "name": "fragment/RateTheRisk.fragment.xml"
+        },
+        {
+            "name": "fragment/NearMissSpecific.fragment.xml"
+        },
+        {
+            "name": "fragment/Location.fragment.xml"
+        },
+        {
+            "name": "fragment/ImageDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/FileDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/BusyDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/Attachment.fragment.xml"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "manifest.webmanifest"
+        },
+        {
+            "name": "index.html"
+        }
+    ]
+}

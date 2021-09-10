@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout"
+   xmlns:form="sap.ui.layout.form">
+	
+	<core:Title text="When did it happen?"></core:Title>
+	<Label id="lblIncidentUTCDateTime" text="Date / Time" required="true" labelFor="inpIncidentUTCDateTime"/>
+
+	<DateTimePicker required="true" id="inpIncidentUTCDateTime"
+				    value="{path:'IncidentUTCDateTime', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium/short', strictParsing: true }}"
+				    change="checkDateValueState" />
+							
+</core:FragmentDefinition>

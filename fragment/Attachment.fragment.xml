@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:uni="sap.ui.unified"
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout"
+   xmlns:form="sap.ui.layout.form" >
+	
+	<!-- Attachments Section -->
+	<Label text=""></Label>
+	<List items="{Attachments}" growing="true" growingThreshold="3" growingScrollToLoad="false" showSeparators="Inner" mode="SingleSelectLeft" id="AttachmentsList">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Attachments (0)" level="H1" id="attachmentsTitle" />
+				<ToolbarSpacer/>
+				<Button text="Add" icon="sap-icon://add" press="onOpenFileExplorer" />
+				<Button text="Delete" icon="sap-icon://delete" press="onAttachmentDeleted" />
+			</OverflowToolbar>
+		</headerToolbar>
+		<items>
+			<CustomListItem press="onAttachmentPress" type="Active">
+				<HBox>
+					<core:Icon size="2rem" src="sap-icon://document" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+						<Link text="{Filename}" press="onAttachmentPress" />
+					</VBox>
+				</HBox>
+			</CustomListItem>
+		</items>
+	</List>							
+</core:FragmentDefinition>

@@ -1,0 +1,22 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	controllerName="Sempra.EHS.Incident.controller.Launchpad" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page class="customClass" id="page" showFooter="false">
+		<headerContent>
+			<Bar>
+				<contentLeft>
+					<Text text=""></Text>
+				</contentLeft>
+				<contentMiddle>
+					<Title text="EHSM - Environment &amp; Safety" />
+				</contentMiddle>
+			</Bar>
+		</headerContent>
+		<content>
+			<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.BusyDialog" type="XML" />
+			<HBox justifyContent="Center">
+				<HBox id="gridcontainer" wrap="Wrap" justifyContent="Center">
+				</HBox>
+			</HBox>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    
+	    <meta name="theme-color" content="#0A5293" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-title" content="EHSM - Environment & Safety">
+
+		<link rel="manifest" crossorigin="use-credentials" href="./manifest.webmanifest">
+		<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+		<link rel="apple-touch-icon" href="https://www.sdge.com/sites/default/files/SCG_logo-57x57.png" sizes="57x57" />
+		<link rel="apple-touch-icon" href="https://www.sdge.com/sites/default/files/SCG_logo-60x60.png" sizes="60x60" />
+		<link rel="apple-touch-icon" href="https://www.sdge.com/sites/default/files/SCG_logo-72x72.png" sizes="72x72" />
+		<link rel="apple-touch-icon" href="https://www.sdge.com/sites/default/files/SCG_logo-76x76.png" sizes="76x76" />
+		<link rel="apple-touch-icon" href="https://www.sdge.com/sites/default/files/SCG_logo-120x120.png" sizes="120x120" />
+		<link rel="apple-touch-icon" href="https://www.sdge.com/sites/default/files/SCG_logo-152x152.png" sizes="152x152" />
+				
+		<title>EHSM - Environment & Safety</title>
+		<script id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.layout,sap.ui.unified"
+			data-sap-ui-theme="sap_fiori_3"
+			data-sap-ui-resourceroots='{"Sempra.EHS.Incident": "./"}'
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+			data-sap-ui-async="true"
+			data-sap-ui-frameOptions="trusted">
+		</script>
+		
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('./serviceworker.js').catch(err => {
+						alert('Service Worker registration failed - offline disabled');
+						console.log(err);
+					});
+					
+					navigator.serviceWorker.addEventListener('message', event => {
+						if (sap && sap.m && sap.m.MessageBox) {
+							sap.m.MessageBox.show("You can now add the application to your homescreen.", {
+						  		title: "EHSM - Environment & Safety"
+							});
+						}
+						else {						
+							alert("Application fully loaded. You can now add the application to your homescreen.");
+						}
+					});
+				});
+			}
+		</script>
+		
+		<script>
+			window.addEventListener('beforeinstallprompt', function(e) {
+				// The Sempra business team asked that we suppress the default PWA installation prompt:
+				e.preventDefault();
+			});
+			
+			navigator.serviceWorker.ready.then(function() {
+				// Wait for the service worker to be ready before loading the UI5 application shell:
+				sap.ui.getCore().attachInit(function () {
+					sap.ui.require([
+						'sap/m/Shell',
+						'sap/ui/core/ComponentContainer',
+						'sap/ui/thirdparty/datajs',
+						'sap/ui/model/odata/v2/ODataModel'
+					], function (Shell, ComponentContainer) {
+						try {
+							// Try to load the SAPUI5 app shell:
+							var oShell = new Shell({
+								appWidthLimited: false,
+								app: new ComponentContainer({
+									height: "100%",
+									name: "Sempra.EHS.Incident",
+									async: true
+								})
+							});
+
+							// Check to see if the shell was created:
+							if (oShell) {
+								// If so, render the UI5 DOM:
+								oShell.placeAt("container");
+							}
+							else {
+								// Otherwise, if we get to here, then we probably need to refresh the page
+								// in order to refresh our security token:
+								location.reload();
+							}
+						}
+						catch (ex) {
+							console.log(ex);
+							location.reload();
+						}						
+					});
+				});
+			});
+		</script>	
+	</head>
+
+	<body class="sapUiBody">
+		<div data-sap-ui-component data-name="Sempra.EHS.Incident" data-id="container" data-settings='{"id" : "Incident"}'>
+			<div id="busyIndicator" style="text-align: center; font-family: Sans, Arial; background-color: #afc8e1">
+				<h3>EHSM - Environment & Safety</h3>
+
+				<div class="lds-ellipsis">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<h5>This may take a few moments...</h5>
+			</div>
+		</div>
+	</body>
+</html>

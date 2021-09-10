@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout"
+   xmlns:form="sap.ui.layout.form">
+	
+	<core:Title text="What happened?" class="bwdrkCustomTitle" id="whathappenedtitle"></core:Title>
+	
+	<Label id="lblIncidentTitle" text="Title" required="true" labelFor="inpIncidentTitle" />
+	<Input required="true" id="inpIncidentTitle" value="{IncidentTitle}" />
+	
+	<Label id="lblIncidentDescriptionOfEvents" text="Description" required="true" labelFor="inpIncidentDescriptionOfEvents" />
+	<TextArea required="true" id="inpIncidentDescriptionOfEvents" value="{IncidentDescriptionOfEvents}" />
+	
+	<Label id="eventClassLabel" text="Event Classification" labelFor="eventClassId"/>
+	<Text text="{= (${NmGroup} === 'ZEHHSS_NMG_NM_CC') ? 'Near Miss / Close Call' : 'Stop the Job'}" />
+	
+</core:FragmentDefinition>

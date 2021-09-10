@@ -1,0 +1,1 @@
+sap.ui.define(["Sempra/EHS/Incident/controller/App.controller"],function(t){"use strict";QUnit.module("App Controller");QUnit.test("I should test the App controller",function(n){var e=new t;e.onInit();n.ok(e)})});

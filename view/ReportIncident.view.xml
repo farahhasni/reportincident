@@ -1,0 +1,163 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form" controllerName="Sempra.EHS.Incident.controller.ReportIncident"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:upload="sap.m.upload">
+    <App>
+        <pages>
+            <Page title="{i18n>reportIncidentTitle}" showFooter="true" navButtonPress="onNavBack" showNavButton="{= ${app>/FLPShell} === false}">
+                <content>
+                    <layout:VerticalLayout class="sapUiResponsiveContentPadding" width="100%">
+                        <layout:dependents>
+                            <core:Fragment fragmentName="Sempra.EHS.Incident.fragment.BusyDialog" type="XML"/>
+                        </layout:dependents>
+                        <layout:content>
+                            <form:SimpleForm title="{i18n>newIncidentTitle}" editable="true" layout="ResponsiveGridLayout" class="bwdrkCustomTitle" columnsXL="1" columnsL="1" columnsM="1" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="true">
+                                <form:content>
+                                    <!--Incident Group-->
+                                    <core:Title text="{i18n>incidentGroupTitle}" class="bwdrkCustomTitle"/>
+                                    <Label text="{i18n>injuryIllnessLabel}"/>
+                                    <HBox>
+                                        <CheckBox id="idAccidentTypeFlag" select="onSelectInjIllness" selected="false"/>
+                                        <Label id="idAccidentType" text="{i18n>typeLabel}" textAlign="Begin" class="sapUiSmallMarginEnd sapUiSmallMarginTopBottom"  required="true"/>
+                                        <Select id="idSelectAccidentType" enabled="{ReportIncidentView>/AccidentCatFlag}" textAlign="Left" selectedKey="{AccidentCat}" width = "250px">
+                                            <items>
+                                                <core:Item text="" key="0"/>
+                                                <core:Item text="{i18n>docVisitLabel}" key="1"/>
+                                                <core:Item text="{i18n>reportOnlyLabel}" key="2"/>
+                                                <core:Item text="{i18n>firstAidLabel}" key="3"/>
+                                            </items>
+                                        </Select>
+                                    </HBox>
+                                    <Label text="{i18n>mviLabel}"/>
+                                    <HBox>
+                                        <CheckBox id="idMviTypeFlag" select="onSelectMvi" selected="{MviIncidentFlag}"/>
+                                        <Label id="idMviType" text="{i18n>typeLabel}" required="true" textAlign="Left" class="sapUiSmallMarginEnd sapUiSmallMarginTopBottom" visible = "false" />
+                                        <!-- <Input id="idSelectMviType" value="{MviType}" valueHelpOnly="true" valueHelpRequest="onReqMviValueHelp" showValueHelp="true" enabled="false" visible = "false"/> -->
+
+                                        <!-- <Select id="idSelectMviType" enabled="false" textAlign="Left" selectedKey="{MviType}" items="{ path: 'sap_ro>/LocationClassifications' }" class = "sapUiMediumMarginBegin" visible = "false">
+                                            <items id="idMviTypeItems">
+                                                <core:Item text="{sap_ro>DescriptionLong}" key="{sap_ro>Code}" />
+                                            </items>
+                                        </Select> -->
+                                        <!-- FHASNI: To confirm the items?-->
+                                        <Select id="idSelectMviType" enabled="false" textAlign="Left" selectedKey="{MviIncidentType}" items="{ path: 'sap_ro>/MviIncTypeCodeSet' }" visible = "false" width = "250px">
+                                            <!--selectedKey="{InjIllnessType}">-->
+                                            <items>
+                                                <core:Item text="{sap_ro>DescriptionLong}" key="{sap_ro>Code}" />
+                                                <!-- <core:Item text="Doc Visit" key="1"/>
+                                                <core:Item text="Report Only" key="2"/>
+                                                <core:Item text="First Aid" key="3"/> -->
+                                            </items>
+                                        </Select>
+                                    </HBox>
+                                    <!--What happened?-->
+                                    <core:Title text="{i18n>whathappenedTitle}" class="bwdrkCustomTitle"/>
+                                    <Label text="{i18n>incidentDescriptionLabel}" required="true"/>
+                                    <Input required="true" value="{IncidentTitle}"/>
+                                    <Label text="{i18n>detailedDescriptionLabel}" labelFor="idDetailedDescription"/>
+                                    <TextArea id="idDetailedDescription" value="{IncidentDescriptionOfEvents}"/>
+                                    <Label text=""/>
+                                    <List items="{Attachments}" growing="true" growingThreshold="3" growingScrollToLoad="false" showSeparators="Inner" mode="SingleSelectLeft" id="AttachmentsList">
+                                        <headerToolbar>
+                                            <OverflowToolbar>
+                                                <Title text="{i18n>attachmentsLabel}" level="H1" id="attachmentsTitle"/>
+                                                <ToolbarSpacer/>
+                                                <Button text="{i18n>addLabel}" icon="sap-icon://add" press="onOpenFileExplorer"/>
+                                                <Button text="{i18n>deleteLabel}" icon="sap-icon://delete" press="onAttachmentDeleted"/>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <items>
+                                            <CustomListItem press="onAttachmentPress" type="Active">
+                                                <HBox>
+                                                    <core:Icon size="2rem" src="sap-icon://document" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+                                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+                                                        <Link text="{Filename}" press="onAttachmentPress"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </CustomListItem>
+                                        </items>
+                                    </List>
+                                    <core:Title/>
+
+                                    <!--When did it happen?-->
+                                    <core:Title text="{i18n>whenDidItHappenTitle}"/>
+                                    <Label text="{i18n>dateTimeLabel}" required="true" labelFor="inpIncidentUTCDateTime"/>
+                                    <DateTimePicker required="true" id="inpIncidentUTCDateTime" value="{path:'IncidentUTCDateTime', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium/short', strictParsing: true }}" change="checkDateValueState"/>
+
+                                    <!--Where did it happen?-->
+                                    <core:Title text="{i18n>whereDidItHappenTitle}"></core:Title>
+                                    <Label text = "{i18n>locationLabel}" labelFor="inpLoc"/>
+                                    <RadioButtonGroup id="idLocation" columns="3" width="100%" select="onSelectLocation" selectedIndex="{ReportIncidentView>/LocationCompany}">
+                                        <RadioButton text="{i18n>companyLabel}"/>
+                                        <RadioButton text="{i18n>nonCompanyLabel}"/>
+                                    </RadioButtonGroup>
+                                    <Label id="lblEHSLocationUUID" text="{i18n>companyLocationLabel}" required="true" visible="true" />
+                                    <Input required="true" id="inpEHSLocationUUID" valueHelpRequest="onLocationValueHelp" placeholder="{i18n>locationPlaceholderLabel}" busyIndicatorDelay="0" valueHelpOnly="true" showValueHelp="true" visible="true"/>
+                                    <!-- <Label visible= "true" text="" /> -->
+                                    <Label id="lblIncidentLocationDescription" visible="false" text="{i18n>nonCompanyLocationLabel}" required="true"/>
+                                    <!-- FHASNI: To confirm on Non Company Location field. What is Location Description? -->
+                                    <Input required="true" id="inpIncidentLocationDescription" value="{IncidentLocationDescription}" placeholder="{i18n>exactLocationPlaceholderLabel}" visible="false"/>
+
+                                    <Label text="{i18n>locationClassificationLabel}"/>
+                                    <ComboBox selectedKey="{LocType}" items="{ path: 'sap_ro>/LocationClassifications' }" id="locationClassification" placeholder="{i18n>locationClassificationPlaceholderLabel}" change="checkLocationValueState">
+                                        <core:Item text="{sap_ro>Description}" key="{sap_ro>Code}" />
+                                    </ComboBox>
+
+                                </form:content>
+                            </form:SimpleForm>
+                            <!--Who was injured?-->
+                            <form:SimpleForm id="idInjured" editable="true" layout="ResponsiveGridLayout" class="bwdrkCustomTitle" columnsXL="1" columnsL="1" columnsM="1" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="true">
+                                <form:content>
+                                    <core:Title text="{i18n>whoWasInjuredLabel}"/>
+                                    <Label text="{i18n>nameLabel}" labelFor="idInjuredName" required="true"/>
+                                    <Input id="idInjuredName" value="{ReportIncidentView>/InjuredName}" valueHelpOnly="true" valueHelpRequest="onNameValueHelp" showValueHelp="true" required="true"/>
+                                    <Label text="{i18n>personnelNumberLabel}" labelFor=" idInjuredNum"/>
+                                    <Input id="idInjuredNum" value=" {ReportIncidentView>/InjuredPersNum}" enabled=" false"/>
+                                </form:content>
+                            </form:SimpleForm>
+                            <!---Who was the Company driver?-->
+                            <form:SimpleForm id="idDriver" editable="true" layout="ResponsiveGridLayout" class="bwdrkCustomTitle" columnsXL="1" columnsL="1" columnsM="1" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="true">
+                                <form:content>
+                                    <core:Title text="Driver and Vehicle Information"/>
+                                    <Label text="{i18n>nameLabel}" required="true" labelFor="idDriverName"/>
+                                    <Input id="idDriverName" value="{ReportIncidentView>/DriverName}" valueHelpOnly="true" valueHelpRequest="onNameValueHelp" showValueHelp="true" required="true"/>
+                                    <Label text="{i18n>personnelNumberLabel}" labelFor="idDriverNum"/>
+                                    <Input id="idDriverNum" value="{ReportIncidentView>/IncidentPersNum}" enabled="false"/>
+                                    <Label text="{i18n>nonCompanyVehicleLabel}"/>
+                                    <!-- FHASNI: To confirm can change this to true/false instead of X -->
+                                    <CheckBox id="idVehicle" select="onSelectVehicle" selected="{ReportIncidentView>/IsVehicleCompanyOwned}"/>
+                                    <!--</HBox>-->
+                                    <Label id="idVehicleUnitNo" labelFor="idVehicleUnitNoValue" text="{i18n>vehicleUnitNoLabel}"/>
+                                    <Input id="idVehicleUnitNoValue" value="{VehicleUnitNo}"/>
+                                    <Label id="idVehicleLicense" labelFor="idVehicleLicenseValue" text="{i18n>vehicleLicenseNoLabel}" />
+                                    <Input id="idVehicleLicenseValue" value="{LicensePlateID}"/>
+                                </form:content>
+                            </form:SimpleForm>
+                            <!--Who witnessed the incident?-->
+                            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" class="bwdrkCustomTitle" columnsXL="1" columnsL="1" columnsM="1" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="true">
+                                <form:content>
+                                    <core:Title text="{i18n>whoWitnessedTheIncidentTitle}"/>
+                                    <Label labelFor="inpWitness" text="{i18n>nameLabel}"/>
+                                    <Input id="idWitnessName" value="{ReportIncidentView>/WitnessName}" valueHelpOnly="true" valueHelpRequest="onNameValueHelp" showValueHelp="true" width="60%"/>
+                                    <Label text="{i18n>personnelNumberLabel}" labelFor="idWitnessNum"/>
+                                    <Input id="idWitnessNum" value="{ReportIncidentView>/IncidentWitnessPersNum}" width="60%" enabled="false"/>
+                                </form:content>
+                            </form:SimpleForm>
+                        </layout:content>
+                    </layout:VerticalLayout>
+                </content>
+                <footer>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button type="Emphasized" text="Submit" press="submitIncident"/>
+                        <Button text="Cancel" press="onCancelIncidentDraft"/>
+                    </Toolbar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

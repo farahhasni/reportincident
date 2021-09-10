@@ -1,0 +1,74 @@
+<core:View xmlns:core="sap.ui.core" controllerName="Sempra.EHS.Incident.controller.SafetySuggestions" xmlns:layout="sap.ui.layout" height="100%" xmlns="sap.m" xmlns:unified="sap.ui.unified" xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic">
+	<semantic:DetailPage title="CFO Safety Suggestion" id="createNearMissPage" navButtonPress="onNavBack" showNavButton="{= ${app>/FLPShell} === false}">
+		<semantic:content>
+			<layout:VerticalLayout class="sapUiResponsiveContentPadding" width="80%">
+				<layout:dependents>
+					<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.BusyDialog" type="XML" />
+				</layout:dependents>
+				
+				<layout:content>
+					<Label text="&quot;Prevention through Pro-Actve Participation&quot;" width="100%" textAlign="Center" vAlign="Middle">
+						<layoutData>
+							<layout:GridData span="L10 M7 S12" indent="L10 M4 S0"/>
+						</layoutData>
+					</Label>
+					<form:SimpleForm id="form" layout="ResponsiveGridLayout" width="100%" editable="true" labelSpanM="4" labelSpanL="3" columnsL="1" columnsM="1" emptySpanM="1" emptySpanL="4">
+						<Label text="Originator" labelFor="idOrigintor"/>
+						<Input id="idOriginator" value="{Originator}" placeholder="First Name      Last Name" width="90%" maxLength="80"/>
+						<CheckBox text="Anonymous" select="onAnonymousSelected" selected="{RepAnonymInd}"/>
+						<Label id="lblEHSLocationUUID" text="Facility" required="true" labelFor="inpEHSLocationUUID"/>
+						<Input id="inpEHSLocationUUID" placeholder="Select a Facility" width="50%" valueHelpRequest="onLocationValueHelp" showValueHelp="true" valueHelpOnly="true" busyIndicatorDelay="0"/>
+						<Label id="lblIncidentLocationDescription" text="Location" required="true" labelFor="inpIncidentLocationDescription"/>
+						<Input id="inpIncidentLocationDescription" value="{IncidentLocationDescription}" placeholder="Provide the Location" width="50%"/>
+						<Label text="Date" required="false" labelFor="idDateTimePicker"/>
+						<DatePicker id="idDateTimePicker" value="{path:'IncidentUTCDateTime', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" placeholder="Select a Date" change="checkDateValueState"/>
+						<Label text="Causal Factor"/>
+						<VBox width="100%">
+							<CheckBox text="Hazard Condition" selected="{ACFHazard}"/>
+							<CheckBox text="At-Risk Behavior" selected="{ACFAtRisk}"/>
+						</VBox>
+						<Label text="Hazard Identification category"/>
+						<VBox width="100%">
+							<CheckBox text="Health" selected="{HIDCatHealth}"/>
+							<CheckBox text="Safety" selected="{HIDCatSafety}"/>
+							<CheckBox text="Environment" selected="{HIDCatEnv}"/>
+							<CheckBox text="Other" selected="{HIDCatOther}"/>
+						</VBox>
+						<Label id="HIDCatOtherDescLabel" text="Describe Other" visible="{= ${HIDCatOther} === true}" required="{= ${HIDCatOther} === true}" labelFor="HIDCatOtherInput"/>
+						<TextArea id="HIDCatOtherInput" value="{HIDCatOtherDesc}" visible="{= ${HIDCatOther} === true}" rows="3"/>
+						<Label id="lblIncidentDescriptionOfEvents" text="Describe Potential Hazard" required="true" labelFor="inpIncidentDescriptionOfEvents"/>
+						<TextArea id="inpIncidentDescriptionOfEvents" value="{IncidentDescriptionOfEvents}" width="100%"/>
+						
+						<!--attachment fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.Attachment" type="XML"></core:Fragment>
+						
+						<Label text="Describe What You Did to Correct the Hazard" labelFor="idCorrectHazard"/>
+						<TextArea id="idCorrectHazard" value="{CorrectHazard}" width="100%"/>
+						<Label text="Was the Issue Resolved?"/>
+						<VBox width="100%">
+							<RadioButton text="Yes" textAlign="Left" selected="{ResolvedYes}" groupName="RES"/>
+							<RadioButton text="No" selected="{ResolvedNo}" groupName="RES"/>
+						</VBox>
+						<Label id="ResolvedExplainDescLabel" text="Explain" visible="{= ${ResolvedNo} === true}" required="{= ${/ResolvedNo} === true}" labelFor="ResolvedExplainInput"/>
+						<TextArea id="ResolvedExplainInput" required="true" value="{ResExplain}" visible="{= ${ResolvedNo} === true}" rows="3"/>
+						<Label text="Perceived Risk"/>
+						<Select selectedKey="{EstRiskType}">
+							<items>
+								<core:Item text="Not Specified" key="0"/>
+								<core:Item text="Low Risk" key="1"/>
+								<core:Item text="Medium Risk" key="2"/>
+								<core:Item text="High Risk" key="3"/>
+							</items>
+						</Select>
+					</form:SimpleForm>
+				</layout:content>
+			</layout:VerticalLayout>
+		</semantic:content>
+		<semantic:mainAction>
+			<semantic:MainAction id="submitButton" text="Submit" press="submitIncident" />
+		</semantic:mainAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancelButton" press="onCancelIncidentDraft" />
+		</semantic:cancelAction>
+	</semantic:DetailPage>
+</core:View>

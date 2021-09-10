@@ -1,0 +1,262 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "Sempra.EHS.Incident",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12"
+        },
+        "dataSources": {
+            "EHS_INC_REPORTINCIDENT_SRV": {
+                "uri": "/sap/opu/odata/sap/EHS_INC_REPORTINCIDENT_SRV",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "PAGE_BUILDER_PERS": {
+                "uri": "/sap/opu/odata/UI2/PAGE_BUILDER_PERS",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZEHS_INC_COMMON_SRV": {
+                "uri": "/sap/opu/odata/sap/ZEHS_INC_COMMON_SRV",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "fullWidth": true
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "Sempra.EHS.Incident.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "sap_ro": {
+                "dataSource": "EHS_INC_REPORTINCIDENT_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline",
+                    "defaultBindingMode": "TwoWay",
+                    "refreshAfterChange": false,
+                    "useBatch": false
+                }
+            },
+            "sap_rw": {
+                "dataSource": "EHS_INC_REPORTINCIDENT_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline",
+                    "defaultBindingMode": "TwoWay",
+                    "refreshAfterChange": false
+                }
+            },
+            "ehs_utils": {
+                "dataSource": "ZEHS_INC_COMMON_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline",
+                    "defaultBindingMode": "TwoWay",
+                    "refreshAfterChange": false,
+                    "useBatch": false
+                }
+            },
+            "flp": {
+                "dataSource": "PAGE_BUILDER_PERS",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline",
+                    "defaultBindingMode": "TwoWay",
+                    "refreshAfterChange": false,
+                    "useBatch": false
+                }
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "Sempra.EHS.Incident.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "Sempra.EHS.Incident.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteApp",
+                    "pattern": "RouteApp",
+                    "target": [
+                        "TargetApp"
+                    ]
+                },
+                {
+                    "name": "Launchpad",
+                    "pattern": "",
+                    "target": "Launchpad"
+                },
+                {
+                    "name": "NearMiss",
+                    "pattern": "nearmiss/{incidentKey}",
+                    "target": "NearMiss"
+                },
+                {
+                    "name": "NearMiss",
+                    "pattern": "nearmiss",
+                    "target": "NearMiss"
+                },
+                {
+                    "name": "StopTheJob",
+                    "pattern": "stopthejob/{incidentKey}",
+                    "target": "StopTheJob"
+                },
+                {
+                    "name": "StopTheJob",
+                    "pattern": "stopthejob",
+                    "target": "StopTheJob"
+                },
+                {
+                    "name": "SafetySuggestions",
+                    "pattern": "safetysuggestions/{incidentKey}",
+                    "target": "SafetySuggestions"
+                },
+                {
+                    "name": "SafetySuggestions",
+                    "pattern": "safetysuggestions",
+                    "target": "SafetySuggestions"
+                },
+                {
+                    "name": "HazardIdentification",
+                    "pattern": "hazardidentification/{incidentkey}",
+                    "target": "HazardIdentification"
+                },
+                {
+                    "name": "HazardIdentification",
+                    "pattern": "hazardIdentification",
+                    "target": "HazardIdentification"
+                },
+                {
+                    "name": "Worklist",
+                    "pattern": "worklist",
+                    "target": "Worklist"
+                },
+                {
+                    "name": "ReportIncident",
+                    "pattern": "increp",
+                    "target": "ReportIncident"
+                }
+
+
+            ],
+            "targets": {
+                "TargetApp": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "App",
+                    "viewName": "App"
+                },
+                "Launchpad": {
+                    "viewType": "XML",
+                    "viewName": "Launchpad"
+                },
+                "StopTheJob": {
+                    "viewType": "XML",
+                    "viewName": "StopTheJob"
+                },
+                "NearMiss": {
+                    "viewType": "XML",
+                    "viewName": "NearMiss",
+                    "viewId": "NearMiss"
+                },
+                "SafetySuggestions": {
+                    "viewType": "XML",
+                    "viewName": "SafetySuggestions"
+                },
+                "HazardIdentification": {
+                    "viewType": "XML",
+                    "viewName": "HazardIdentification"
+                },
+                "Worklist": {
+                    "viewType": "XML",
+                    "viewName": "Worklist"
+                },
+                "ReportIncident": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "ReportIncident"
+				}
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zeh_inc_pwa/webapp",
+        "_version": "1.1.0"
+    },
+    "sap.platform.hcp": {
+        "uri": "webapp",
+        "_version": "1.1.0"
+    }
+}

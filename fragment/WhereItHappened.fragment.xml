@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout"
+   xmlns:form="sap.ui.layout.form">
+	
+	<core:Title text="Where did it happen?"></core:Title>
+	
+	<Label id="lblEHSLocationUUID" text="Location" required="true" labelFor="inpEHSLocationUUID" />
+	<Input required="true" id="inpEHSLocationUUID" valueHelpRequest="onLocationValueHelp" placeholder="Select a location"
+				busyIndicatorDelay="0" valueHelpOnly="true" showValueHelp="true" />
+	
+	<Label visible="{= (${NmGroup} === 'ZEHHSS_NMG_NM_CC') === true}" text="" />
+	<Label id="lblIncidentLocationDescription" visible="{= (${NmGroup} === 'ZEHHSS_NMG_NM_CC') === false}" text="City" required="true" />
+	<Input required="true" id="inpIncidentLocationDescription" value="{IncidentLocationDescription}" placeholder="{= ${NmGroup} === 'ZEHHSS_NMG_NM_CC' ? 'If necessary, specify the exact location' : 'Provide the City'}" />
+	
+	<Label text="Location Classification"></Label>
+	
+	<ComboBox selectedKey="{LocType}" items="{ path: 'sap_ro>/LocationClassifications' }" id="locationClassification" placeholder="Select Location Classification" change="checkLocationValueState">
+		<core:Item text="{sap_ro>Description}" key="{sap_ro>Code}" />
+	</ComboBox>
+	
+</core:FragmentDefinition>

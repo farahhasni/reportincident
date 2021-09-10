@@ -1,0 +1,9 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+	
+	<core:Title text="Stop The Job Specific Information"></core:Title>
+	<Label text="Resolution"/>
+	<TextArea rows="5" value="{Resolution}" />
+	
+</core:FragmentDefinition>

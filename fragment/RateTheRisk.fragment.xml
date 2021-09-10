@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout"
+   xmlns:form="sap.ui.layout.form">
+	
+	<core:Title id="rateRiskTitle" text="In your opinion, how would you rate the risk of the incident being submitted?"></core:Title>
+	<Label xmlns="sap.m" text="Perceived Risk"/>
+	<Select xmlns="sap.m" selectedKey="{EstRiskType}">
+		<items>
+			<core:Item text="Not Specified" key="0"/>
+			<core:Item text="Low Risk" key="1"/>
+			<core:Item text="Medium Risk" key="2"/>
+			<core:Item text="High Risk" key="3"/>
+		</items>
+	</Select>
+	<Label text="Submit anonymously?" visible="{= ${NmGroup} === 'ZEHHSS_NMG_NM_CC'}" />
+	<CheckBox selected="{RepAnonymInd}" visible="{= ${NmGroup} === 'ZEHHSS_NMG_NM_CC'}" />
+	
+</core:FragmentDefinition>

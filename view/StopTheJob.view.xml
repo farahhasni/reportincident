@@ -1,0 +1,53 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic"
+	controllerName="Sempra.EHS.Incident.controller.StopTheJob" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Report Stop the Job" showFooter="true" floatingFooter="true" navButtonPress="onNavBack" showNavButton="{= ${app>/FLPShell} === false}">
+		<content>
+			<layout:VerticalLayout class="sapUiResponsiveContentPadding" width="100%">
+				<layout:dependents>
+					<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.BusyDialog" type="XML" />
+				</layout:dependents>
+				
+				<layout:content>
+					<form:SimpleForm id="form" title="Report Stop the Job"
+									editable="true"
+									layout="ResponsiveGridLayout"
+									class="bwdrkCustomTitle"
+									columnsXL="1"
+									columnsL="1"
+									columnsM="1"
+									labelSpanXL="3"
+									labelSpanL="3"
+									labelSpanM="3"
+									labelSpanS="12">
+						
+						<!--what happened fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.WhatHappened" type="XML"></core:Fragment>
+						
+						<!--attachment fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.Attachment" type="XML"></core:Fragment>
+						
+						<!--when fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.WhenItHappened" type="XML"></core:Fragment>
+						
+						<!--where fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.WhereItHappened" type="XML"></core:Fragment>
+						
+						<!--specific form fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.StopTheJobSpecific" type="XML"></core:Fragment>
+						
+						<!--rate the risk fragment-->
+						<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.RateTheRisk" type="XML"></core:Fragment>
+			
+					</form:SimpleForm>
+				</layout:content>
+			</layout:VerticalLayout>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button type="Emphasized" text="Submit" press="submitIncident" />
+				<Button text="Cancel" press="onCancelIncidentDraft" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

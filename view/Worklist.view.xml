@@ -1,0 +1,45 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="Sempra.EHS.Incident.controller.Worklist"
+	xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page showNavButton="true" navButtonPress="onNavBack" title="EHSM - Environment &amp; Safety">
+		<content>
+			<core:Fragment fragmentName="Sempra.EHS.Incident.fragment.BusyDialog" type="XML" />
+			<IconTabBar select="onFilterWorklist">
+				<items>
+					<IconTabFilter key="all" text="Show All" icon="sap-icon://clear-filter"/>
+					<IconTabFilter key="98" icon="sap-icon://pending" iconColor="Critical" text="Pending"/>
+					<IconTabFilter key="01" icon="sap-icon://message-success" iconColor="Positive" text="Posted"/>
+					<IconTabFilter key="99" icon="sap-icon://message-error" iconColor="Negative" text="Error"/>
+				</items>
+				<content>
+					<Table id="tabWorklist" items="{path: '/Worklist'}" growing="true" growingThreshold="100" growingScrollToLoad="true" fixedLayout="false"
+					       mode="SingleSelectLeft">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="Event Records"/>
+								<ToolbarSpacer/>
+								<Button text="Sync with SAP" icon="sap-icon://refresh" tooltip="Synchronize with SAP" press="onSyncToSAP" />
+								<Button text="Message Log" icon="sap-icon://message-popup" tooltip="View Message Log" press="onOpenMessageLog" />
+								<Button text="Delete Event" icon="sap-icon://delete" tooltip="Delete the Event Record" press="onDeleteEvent" />
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column><Label text="Event Type"/></Column>
+							<Column importance="Low"><Label text="Title"/></Column>
+							<Column><Label text="Date"/></Column>
+							<Column><Label text="Status/ID"/></Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<Text text="{ parts: ['IncidentCategory', 'NmGroup', 'SftyObsGroup'], formatter: '.formatter.subCategoryDesc' }"/>
+								<Text text="{IncidentTitle}"/>
+								<Text text="{ path: 'IncidentUTCDateTime', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC: true, pattern: 'MM/dd/yy'} }"/>
+								<Text text="{ parts: ['IncidentID', 'IncidentStatus'], formatter: '.formatter.statusDesc' }"/>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

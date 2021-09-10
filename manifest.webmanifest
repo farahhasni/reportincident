@@ -1,0 +1,74 @@
+{
+  "name": "EHSM - Environment & Safety",
+  "short_name": "EHSM - Environment & Safety",
+  "description": "Report an Incident",
+  "start_url": "index.html",
+  "scope": ".",
+  "display": "minimal-ui",
+  "lang": "en-US",
+  "theme_color": "#0A5293",
+  "background_color": "#AFC8E1",
+  "icons": [
+    {
+      "src": "img/scg/android-launchericon-144-144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "img/scg/android-launchericon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/scg/android-launchericon-48-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "img/scg/android-launchericon-512-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "img/scg/android-launchericon-72-72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "img/scg/android-launchericon-96-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "img/scg/chrome-favicon-16-16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "img/scg/chrome-installprocess-128-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "img/scg/firefox-general-256-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "img/scg/firefox-general-32-32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "img/scg/firefox-general-64-64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "img/scg/firefox-general-90-90.png",
+      "type": "image/png",
+      "sizes": "90x90"
+    }
+  ]
+}

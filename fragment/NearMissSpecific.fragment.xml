@@ -1,0 +1,85 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:layout="sap.ui.layout">
+	
+	<core:Title text="Near Miss / Close Call Specific Information"></core:Title>
+	<Label text="Who could have been impacted?" />
+	<HBox justifyContent="SpaceBetween" wrap="Wrap">
+		<CheckBox text="Customer" selected="{ImpCustomer}"/>
+		<CheckBox text="Public" selected="{ImpPublic}"/>
+		<CheckBox text="Employee" selected="{ImpEmployee}"/>
+		<CheckBox text="Other" selected="{ImpOther}"/>
+	</HBox>
+	
+	<Label id="impOtherLabel" text="Describe Other" visible="{= ${ImpOther} === true}" labelFor="impOtherInput"/>
+	<Input required="true" id="impOtherInput" value="{ImpOtherDesc}" visible="{= ${ImpOther} === true}" placeholder="Limit to 80 characters" maxLength="80" />
+	
+	<Label text="What might have been the primary cause?" />
+	<Select selectedKey="{PrimCause}">
+		<items>
+			<core:Item key="000" text=""/>
+			<core:Item key="001" text="Dog" enabled="{= ${SecCause} !== '001'}"/>
+			<core:Item key="002" text="Equipment/Materials" enabled="{= ${SecCause} !== '002'}"/>
+			<core:Item key="010" text="No USA Ticket" enabled="{= ${SecCause} !== '010'}"/>
+			<core:Item key="009" text="Not Marked / Mis-Marked Facility" enabled="{= ${SecCause} !== '009'}"/>
+			<core:Item key="003" text="Personal Protective Equipment" enabled="{= ${SecCause} !== '003'}"/>
+			<core:Item key="004" text="Stairs" enabled="{= ${SecCause} !== '004'}"/>
+			<core:Item key="005" text="Tools" enabled="{= ${SecCause} !== '005'}"/>
+			<core:Item key="006" text="Vehicle" enabled="{= ${SecCause} !== '006'}"/>
+			<core:Item key="007" text="Walking Surface" enabled="{= ${SecCause} !== '007'}"/>
+			<core:Item key="008" text="Other"/>
+		</items>
+	</Select>
+	
+	<Label id="primOthLabel" text="Describe Other" visible="{= ${PrimCause} === '008'}" labelFor="primOtherInput"/>
+	<Input required="true" id="primOtherInput" value="{PrimOthDesc}" visible="{= ${PrimCause} === '008'}" placeholder="Limit to 80 characters" maxLength="80" />
+	
+	<Label text="What might have been the secondary cause?" />
+	<Select selectedKey="{SecCause}">
+		<items>
+			<core:Item key="000" text=""/>
+			<core:Item key="001" text="Dog" enabled="{= ${PrimCause} !== '001'}"/>
+			<core:Item key="002" text="Equipment/Materials" enabled="{= ${PrimCause} !== '002'}"/>
+			<core:Item key="010" text="No USA Ticket" enabled="{= ${PrimCause} !== '010'}"/>
+			<core:Item key="009" text="Not Marked / Mis-Marked Facility" enabled="{= ${PrimCause} !== '009'}"/>
+			<core:Item key="003" text="Personal Protective Equipment" enabled="{= ${PrimCause} !== '003'}"/>
+			<core:Item key="004" text="Stairs" enabled="{= ${PrimCause} !== '004'}"/>
+			<core:Item key="005" text="Tools" enabled="{= ${PrimCause} !== '005'}"/>
+			<core:Item key="006" text="Vehicle" enabled="{= ${PrimCause} !== '006'}"/>
+			<core:Item key="007" text="Walking Surface" enabled="{= ${PrimCause} !== '007'}"/>
+			<core:Item key="008" text="Other"/>
+		</items>
+	</Select>
+	
+	<Label id="secOthLabel" text="Describe Other" visible="{= ${SecCause} === '008'}" labelFor="secOthInput"/>
+	<Input required="true" id="secOthInput" value="{SecOthDesc}" visible="{= ${SecCause} === '008'}" placeholder="Limit to 80 characters" maxLength="80" />
+	
+	<Label text="How can we improve safety or minimize/eliminate exposure to the Near Miss / Close call being submitted?" />
+	<Input value="{SafetyExpComments}" />
+	
+	<Label text="What groups/organizations are impacted by the Near Miss?"/>
+	<VBox width="100%">
+		<layout:Grid defaultSpan="L6 M6 S12" hSpacing="0" vSpacing="0" width="100%">
+			<CheckBox text="Construction" selected="{OrgConstruction}"/>
+			<CheckBox text="Electric Distribution" selected="{OrgElectric}" />
+			<CheckBox text="Electric Transmission" selected="{OrgElectricTrans}"/>
+			<CheckBox text="Energy Supply" selected="{OrgEnergy}"/>
+			<CheckBox text="Environmental" selected="{OrgEnvironmental}"/>
+			<CheckBox text="Facilities" selected="{OrgFacilities}"/>
+			<CheckBox text="Fleet" selected="{OrgFleet}"/>
+			<CheckBox text="Customer Services Field" selected="{OrgGasCustSvc}"/>
+			<CheckBox text="Gas Distribution" selected="{OrgGasDist}"/>
+			<CheckBox text="Gas Storage" selected="{OrgGasStorage}"/>
+			<CheckBox text="Gas Transmission" selected="{OrgGasTrans}"/>
+			<CheckBox text="Major Projects" selected="{OrgMajorProj}"/>
+			<CheckBox text="Office Employees" selected="{OrgOfficeEmp}"/>
+			<CheckBox text="Safety" selected="{OrgSafety}"/>
+			<CheckBox text="Other" selected="{OrgOther}"/>
+		</layout:Grid>
+	</VBox>
+	<!-- TODO: make this show up if other is selected -->
+	<Label id="orgOtherDescLabel" text="Describe Other" visible="{= ${OrgOther} === true}" labelFor="orgOtherInput"/>
+	<Input required="true" id="orgOtherInput" value="{OrgOtherDesc}" visible="{= ${OrgOther} === true}" placeholder="Limit to 80 characters" maxLength="80" />
+	
+</core:FragmentDefinition>
